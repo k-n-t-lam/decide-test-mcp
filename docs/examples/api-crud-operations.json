@@ -1,0 +1,100 @@
+{
+  "feature": "User Management API",
+  "description": "CRUD operations for user management endpoints",
+  "rules": [
+    {
+      "id": "API001",
+      "name": "Create User",
+      "description": "Successfully create a new user",
+      "conditions": {
+        "email": "newuser@example.com",
+        "firstName": "John",
+        "lastName": "Doe",
+        "role": "user"
+      },
+      "actions": ["POST /api/users"],
+      "expected": ["Status 201", "User ID returned"],
+      "priority": "high",
+      "tags": ["crud", "critical"]
+    },
+    {
+      "id": "API002",
+      "name": "Get User",
+      "description": "Retrieve existing user by ID",
+      "conditions": {
+        "userId": "123",
+        "authenticated": true
+      },
+      "actions": ["GET /api/users/123"],
+      "expected": ["Status 200", "User data returned"],
+      "priority": "high",
+      "tags": ["crud", "critical"]
+    },
+    {
+      "id": "API003",
+      "name": "Update User",
+      "description": "Update user information",
+      "conditions": {
+        "userId": "123",
+        "firstName": "Jonathan",
+        "authenticated": true
+      },
+      "actions": ["PUT /api/users/123"],
+      "expected": ["Status 200", "Updated user returned"],
+      "priority": "high",
+      "tags": ["crud"]
+    },
+    {
+      "id": "API004",
+      "name": "Delete User",
+      "description": "Delete a user account",
+      "conditions": {
+        "userId": "123",
+        "authenticated": true
+      },
+      "actions": ["DELETE /api/users/123"],
+      "expected": ["Status 204", "No content returned"],
+      "priority": "high",
+      "tags": ["crud", "critical"]
+    },
+    {
+      "id": "API005",
+      "name": "Duplicate Email",
+      "description": "Prevent creation of user with duplicate email",
+      "conditions": {
+        "email": "existing@example.com",
+        "firstName": "Jane",
+        "lastName": "Smith"
+      },
+      "actions": ["POST /api/users"],
+      "expected": ["Status 409", "Error message displayed"],
+      "priority": "medium",
+      "tags": ["validation", "error-handling"]
+    },
+    {
+      "id": "API006",
+      "name": "Unauthorized Access",
+      "description": "Prevent access without authentication",
+      "conditions": {
+        "authenticated": false
+      },
+      "actions": ["GET /api/users/123"],
+      "expected": ["Status 401", "Unauthorized error"],
+      "priority": "high",
+      "tags": ["security", "critical"]
+    },
+    {
+      "id": "API007",
+      "name": "Invalid Data",
+      "description": "Reject invalid user data",
+      "conditions": {
+        "email": "not-an-email",
+        "firstName": ""
+      },
+      "actions": ["POST /api/users"],
+      "expected": ["Status 422", "Validation errors returned"],
+      "priority": "high",
+      "tags": ["validation"]
+    }
+  ]
+}

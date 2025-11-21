@@ -1,0 +1,11 @@
+id,name,description,email,password,action,expected result,priority,tags
+TC001,Valid Login,User logs in with correct credentials,user@example.com,SecurePass123,Click Login,Dashboard loads,high,smoke;critical
+TC002,Invalid Email,User attempts login with non-existent email,nonexistent@test.com,SecurePass123,Click Login,Error message displayed,medium,security
+TC003,Invalid Password,User enters correct email but wrong password,user@example.com,WrongPassword,Click Login,Error message displayed,high,security
+TC004,Empty Email,User attempts login with empty email field,,SecurePass123,Click Login,Validation error shown,low,validation
+TC005,Empty Password,User attempts login with empty password field,user@example.com,,Click Login,Validation error shown,low,validation
+TC006,Both Empty,User attempts login with both fields empty,,,"Click Login",Validation error shown,low,validation
+TC007,SQL Injection,User attempts SQL injection in email field,admin'; DROP TABLE users; --,password,Click Login,Error handled safely,high,security
+TC008,Remember Me,User logs in and checks remember me checkbox,user@example.com,SecurePass123,"Click Login, Check Remember",Session persists,medium,features
+TC009,Case Sensitivity,Email should be case-insensitive,USER@EXAMPLE.COM,SecurePass123,Click Login,Dashboard loads,low,validation
+TC010,Whitespace Handling,Email with leading/trailing whitespace, user@example.com ,SecurePass123,Click Login,Dashboard loads,low,validation

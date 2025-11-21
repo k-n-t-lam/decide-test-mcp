@@ -1,0 +1,44 @@
+{
+  "name": "@ai-testing/mcp",
+  "version": "1.0.0",
+  "description": "AI-First Testing Workflow MCP Server",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "ai-testing-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "test": "vitest",
+    "lint": "tsc --noEmit && markdownlint '**/*.md' --ignore node_modules --config .markdownlintrc.json",
+    "lint:ts": "tsc --noEmit",
+    "lint:md": "markdownlint '**/*.md' --ignore node_modules --config .markdownlintrc.json",
+    "lint:fix": "tsc --noEmit && markdownlint '**/*.md' --ignore node_modules --config .markdownlintrc.json --fix"
+  },
+  "keywords": [
+    "mcp",
+    "testing",
+    "ai",
+    "playwright",
+    "test-generation"
+  ],
+  "author": "K Lam",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.22.0",
+    "@playwright/test": "^1.56.1",
+    "csv-parse": "^6.1.0",
+    "marked": "^17.0.1",
+    "papaparse": "^5.5.3",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/papaparse": "^5.5.0",
+    "markdownlint-cli": "^0.42.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.12"
+  }
+}

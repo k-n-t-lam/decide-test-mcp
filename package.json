@@ -1,11 +1,11 @@
 {
-  "name": "@ai-testing/mcp",
+  "name": "decide-test-mcp",
   "version": "1.0.0",
-  "description": "AI-First Testing Workflow MCP Server",
+  "description": "Testing Workflow MCP Server",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "ai-testing-mcp": "dist/index.js"
+    "decide-test-mcp": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",

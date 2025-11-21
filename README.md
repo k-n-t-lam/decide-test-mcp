@@ -1,4 +1,4 @@
-# AI-First Testing Workflow (MCP Server)
+# Decide Test MCP
 
 **Claude-driven testing workflow** that generates test cases from decision
 tables, provides intelligent guidance for test planning, and generates
@@ -30,7 +30,7 @@ pnpm build
 ```json
 {
   "mcpServers": {
-    "ai-testing": {
+    "decide-test": {
       "command": "node",
       "args": ["/absolute/path/to/dist/index.js"]
     }
@@ -71,7 +71,7 @@ import {
   decisionTableParser,
   WebAgent,
   testCodeGenerator
-} from '@ai-testing/mcp';
+} from 'decide-test-mcp';
 
 // 1. Parse decision table
 const table = await decisionTableParser.parse(

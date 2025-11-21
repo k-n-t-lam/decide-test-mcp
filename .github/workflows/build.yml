@@ -1,0 +1,47 @@
+name: Build
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x, 24.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Audit dependencies
+        run: pnpm audit --prod
+
+      - name: Lint TypeScript
+        run: pnpm lint:ts
+
+      - name: Lint Markdown
+        run: pnpm lint:md
+
+      - name: Build
+        run: pnpm build
+
+      - name: Run tests
+        run: pnpm test
